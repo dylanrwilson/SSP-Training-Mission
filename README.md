@@ -1,7 +1,8 @@
-# SSP-BinaryToCSV
-Python program for interpreting raw binary data from the microcontroller, converting it to a CSV and performing necessary calculations to make the data in standard units
+# SSP-Training-Mission
+Documentation & code for Team 1 CDHS
 
-## General
+## BinToCSV
+Python program for interpreting raw binary data from the microcontroller, converting it to a CSV and performing necessary calculations to make the data in standard units
 - The Pico reads sensor data at [TBD]hz and records that data to its internal flash memory. In order to minimize the data size, and thus maximize the number of samples, the data will be stored as raw binary in a .bin file.
 - This means upon data retrieval, an additional python script will be necessary to convert the binary data to a CSV file that can be processed using a program such as excel. That script can be found here.
 - This documentation will largely consist of explaining how data is being stored and by extension what kind of processing is necessary to make is usable for future reference. 
