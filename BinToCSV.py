@@ -1,4 +1,3 @@
-filename = input("Filename: ")
 import struct
 import csv
 
@@ -20,4 +19,5 @@ def binToCSV(binList):
             i[1] /= 256
         writer.writerows(binListOfMeasures)
 
+filename = input("Filename: ")
 binToCSV(decode(filename))
