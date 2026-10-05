@@ -10,7 +10,7 @@ def decode(file):
 def binToCSV(binList):
     with open("data.csv", 'w', newline='', encoding="utf-8") as f:
         writer = csv.writer(f)
-        writer.writerow(["Temperature RAW", "Pressure RAW", "Acceleration X", "Acceleration Y", "Acceleration Z", "Gyroscope X", "Gyroscope Y", "Gyroscope Z"])
+        writer.writerow(["Temperature", "Pressure", "Acceleration X", "Acceleration Y", "Acceleration Z", "Gyroscope X", "Gyroscope Y", "Gyroscope Z"])
         binListOfMeasures = []
         for i in range(len(binList)//8):
             binListOfMeasures.append(binList[i*8:(i*8+8)])
