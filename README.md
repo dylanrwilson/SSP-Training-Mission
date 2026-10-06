@@ -8,9 +8,9 @@ Python program for interpreting raw binary data from the microcontroller, conver
 - This documentation will largely consist of explaining how data is being stored and by extension what kind of processing is necessary to make is usable for future reference. 
 
 ### Things to Consider for Addition
-- Delta encoding for temperature(?)
-- ~~Storing in buffer to write larger data chunks~~
-- Modify oversample rate and output data rate to reduce noise in pressure readings, contingent upon frequency of sensor reading
+- [ ] Delta encoding for temperature(?)
+- [x] ~~Storing in buffer to write larger data chunks~~
+- [ ] Modify oversample rate and output data rate to reduce noise in pressure readings, contingent upon frequency of sensor reading
 
 ### Temperature
 - Data type: 32-bit signed integer
