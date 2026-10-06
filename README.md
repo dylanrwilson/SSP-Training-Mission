@@ -8,21 +8,19 @@ Python program for interpreting raw binary data from the microcontroller, conver
 - This documentation will largely consist of explaining how data is being stored and by extension what kind of processing is necessary to make is usable for future reference. 
 
 ### Things to Consider for Addition
-- Delta encoding for temperature
-- Storing in buffer to write larger data chunks
-  + Pro: prevents premature wear on memory
-  + Pro: higher throughput
-  - Con: more data to be lost in event of power fault
+- Delta encoding for temperature(?)
+- ~~Storing in buffer to write larger data chunks~~
+- Modify oversample rate and output data rate to reduce noise in pressure readings, contingent upon frequency of sensor reading
 
 ### Temperature
-- Data type: 16-bit signed integer
-- Must be divided by 100 to achieve standard units
-- Storing as 16-bit signed integer prevents conversion to a float data type, saving 2 bytes of data per sample
+- Data type: 32-bit signed integer
+- Due to 24-bit resolution of the BMP390, a 32-bit integer is the only option for data storage without data loss
+- To avoid slow and taxing calculations, the raw sensor data will be recorded in binary, and then they will be processed according to the datasheet by BinToCSV upon retrieval
 
 ### Pressure
 - Data type: 32-bit unsigned integer
-- Must be divided by 256 to achieve standard units
-- Storing as 32-bit unsigned integer prevents difficult, time-consuming floating-point division, increasing the speed of data handling
+- Due to 24-bit resolution of the BMP390, a 32-bit integer is the only option for data storage without data loss
+- To avoid slow and taxing calculations, the raw sensor data will be recorded in binary, and then they will be processed according to the datasheet by BinToCSV upon retrieval
 
 ### Acceleration X, Y, Z
 - Each to be stored as 16-bit signed integer
