@@ -4,6 +4,8 @@ Documentation & code for Team 1 CDHS
 ## main.py
 The firmware to be uploaded to the Raspberry Pi Pico. Contains necessary configuration for I2C protocol and formatting structure for writing the binary data file. By adjusting the `frequency` and `ticksPerWrite` variables, you can modify the number of data samples taken per second and the number of samples stored in buffer before writing the data to the non-volatile flash memory. It is important to note that this is a balancing act; flash memory only contains ~100,000 write cycles in its working lifespan, which can quickly be reached using high sample rates. This can be balanced by increasing the number of samples per write, effectively reducing the number of writes necessary to log a given quantity of samples. The drawback of this is a higher risk of data loss, as in the event of a power system fault or any other catastrophic failure, the data stored in buffer will not be written to the binary data file. 
 
+There is sufficient memory on the Pico to log ~70,000 data samples, so a value for `frequency` should be chosen with respect to anticipated flight time
+
 **DISCLAIMER:** the drivers are currently configured to down-sample the update frequency of the sensors to 100hz. Should you wish to exceed this frequency for your data collection frequency(which is ill-advised), you must reconfigure the drivers to allow for faster update speeds.
 
 ## driver.py
