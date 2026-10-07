@@ -27,7 +27,7 @@ def normalizeTemp(temp):
     pd1 = temp - T1
     pd2 = pd1 * T2
     temperature = pd2 + (pd1 * pd1) * T3
-    return round(temperature, 4)
+    return temperature
 
 def normalizePres(pres, temp):
     pd1 = P6 * temp
@@ -45,6 +45,12 @@ def normalizePres(pres, temp):
     pressure = (po1 + po2 + pd4)  # Output in Pa
     return pressure
 
+def normalizeAccel(accel):
+    return accel / 2048
+
+def normalizeGyro(gyro):
+    return gyro / 16.4
+
 def binToCSV(binList):
     with open("data.csv", 'w', newline='', encoding="utf-8") as f:
         writer = csv.writer(f)
@@ -55,6 +61,12 @@ def binToCSV(binList):
         for i in binListOfMeasures[:]:
             i[0] = normalizeTemp(i[0])
             i[1] = normalizePres(i[1], i[0])
+            i[2] = normalizeAccel(i[2])
+            i[3] = normalizeAccel(i[3])
+            i[4] = normalizeAccel(i[4])
+            i[5] = normalizeGyro(i[5])
+            i[6] = normalizeGyro(i[6])
+            i[7] = normalizeGyro(i[7])
         writer.writerows(binListOfMeasures)
 
 filename = input("Filename: ")
