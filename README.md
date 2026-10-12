@@ -21,6 +21,10 @@ The Pico reads sensor data at [TBD]hz and records that data to its internal flas
 - [x] ~~Storing in buffer to write larger data chunks~~
 - [ ] Modify oversample rate and output data rate to reduce noise in pressure readings, contingent upon frequency of sensor reading
 
+---
+
+## Data Storage Information
+
 ### Temperature
 - Data type: 32-bit signed integer
 - Due to 24-bit resolution of the BMP390, a 32-bit integer is the only option for data storage without data loss
