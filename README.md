@@ -12,10 +12,7 @@ There is sufficient memory on the Pico to log ~70,000 data samples, so a value f
 Contains the custom drivers for the MPU6050 and the BMP390 for use in the SSP Training Mission. Designed to be lightweight and efficient, including outputting raw data to minimize processing delays. Custom drivers allowed us to easily configure the sensors in the states that we needed them directly in the firmware. This keeps the file size super small, because it lacks infrastructure to change configuration from the main.py script, a functionality that is unnecessary in this application. 
 
 ## BinToCSV
-Python program for interpreting raw binary data from the microcontroller, converting it to a CSV and performing necessary calculations to make the data in standard units
-- The Pico reads sensor data at [TBD]hz and records that data to its internal flash memory. In order to minimize the data size, and thus maximize the number of samples, the data will be stored as raw binary in a .bin file.
-- This means upon data retrieval, an additional python script will be necessary to convert the binary data to a CSV file that can be processed using a program such as excel. That script can be found here.
-- This documentation will largely consist of explaining how data is being stored and by extension what kind of processing is necessary to make is usable for future reference.
+The Pico reads sensor data at [TBD]hz and records that data to its internal flash memory. In order to minimize the data size, and thus maximize the number of samples, the data will be stored as raw binary in a .bin file. BinToCSV interprets the raw binary data from the microcontroller, converts it to a CSV and performs necessary calculations to format the data in standard units. 
 
 ---
 
@@ -35,9 +32,10 @@ Python program for interpreting raw binary data from the microcontroller, conver
 - To avoid slow and taxing calculations, the raw sensor data will be recorded in binary, and then they will be processed according to the datasheet by BinToCSV upon retrieval
 
 ### Acceleration X, Y, Z
-- Each to be stored as 16-bit signed integer
-- Additional processing TBD depending on chosen library
+- Each to be stored as 16-bit signed integer, the native data type of the sensor, meaning compression is already maximized
+- Normalizing the data is done by dividing the raw data by 2048, which is done by BinToCSV
+-**Note:** When the sensor is stationary and flat, it will read 1g of acceleration downward. This is acceleration due to gravity and is normal and expected.
 
 ### Gyroscope X, Y, Z
-- Each to be stored as 16-bit signed integer
-- Additional processing TBD depending on chosen library
+- Each to be stored as 16-bit signed integer, the native data type of the sensor, meaning compression is already maximized
+- Normalizing the data is done by dividing the raw data by 16.4, which is done by BinToCSV
