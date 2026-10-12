@@ -9,7 +9,7 @@ There is sufficient memory on the Pico to log ~70,000 data samples, so a value f
 **DISCLAIMER:** the drivers are currently configured to down-sample the update frequency of the sensors to 100hz. Should you wish to exceed this frequency for your data collection frequency(which is ill-advised), you must reconfigure the drivers to allow for faster update speeds.
 
 ## driver.py
-Contains the custom drivers for the MPU6050 and the BMP390 for use in the SSP Training Mission. Designed to be lightweight and efficient, including outputting raw data to minimize processing delays. Custom drivers allowed us to easily configure the sensors in the states that we needed them directly in the firmware. This keeps the file size super small, because it lacks infrastructure to change configuration from the main.py script, a functionality that is unnecessary in this application. 
+Contains the custom drivers for the MPU6050 and the BMP390 for use in the SSP Training Mission. Designed to be lightweight and efficient, including outputting raw data to minimize processing delays. Custom drivers allow us to easily configure the sensors in the states that we need them directly in the firmware. This keeps the file size super small, because it lacks infrastructure to change configuration from the main.py script, a functionality that is unnecessary in this application. 
 
 ## BinToCSV
 The Pico reads sensor data at [TBD]hz and records that data to its internal flash memory. In order to minimize the data size, and thus maximize the number of samples, the data will be stored as raw binary in a .bin file. BinToCSV interprets the raw binary data from the microcontroller, converts it to a CSV and performs necessary calculations to format the data in standard units. 
