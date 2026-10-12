@@ -34,7 +34,7 @@ The Pico reads sensor data at [TBD]hz and records that data to its internal flas
 ### Acceleration X, Y, Z
 - Each to be stored as 16-bit signed integer, the native data type of the sensor, meaning compression is already maximized
 - Normalizing the data is done by dividing the raw data by 2048, which is done by BinToCSV
--**Note:** When the sensor is stationary and flat, it will read 1g of acceleration downward. This is acceleration due to gravity and is normal and expected.
+- **Note:** When the sensor is stationary and flat, it will read 1g of acceleration downward. This is acceleration due to gravity and is normal and expected.
 
 ### Gyroscope X, Y, Z
 - Each to be stored as 16-bit signed integer, the native data type of the sensor, meaning compression is already maximized
