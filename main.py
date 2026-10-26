@@ -1,6 +1,7 @@
 from machine import Pin, I2C
 from driver import BMP, MPU
 import ustruct
+import time
 
 
 def formatAndWrite(data, debug=False):
@@ -16,14 +17,18 @@ mpu = MPU(i2c)
 
 readData = False
 tickCounter = 0
-ticksPerWrite = 300 #divide by frequency for number of seconds per write command
-frequency = 30
+ticksPerWrite = 225 #divide by frequency for number of seconds per write command
+frequency = 225
 dataBuffer = bytearray()
 
 def timerFunc(timerObj):
     global readData
     readData = True
     
+machine.Pin(25, machine.Pin.OUT).value(1)
+time.sleep(30)
+machine.Pin(25, machine.Pin.OUT).value(0)
+
 timer = machine.Timer(-1)
 timer.init(mode=machine.Timer.PERIODIC, freq=frequency, callback=timerFunc)
 

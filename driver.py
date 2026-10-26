@@ -36,7 +36,7 @@ class MPU:
         if self.i2c.readfrom_mem(self.ADDRESS, self.ID_LOC, 1)[0] != 0x68:
             raise RuntimeError("MPU6050 not found")
         
-        self.i2c.writeto_mem(self.ADDRESS, 0x19, b'\x4F') #sets gyroscope output to 8khz/(1 + 79) = 100hz, accelerometer downsamples to match 100hz frequency
+        self.i2c.writeto_mem(self.ADDRESS, 0x19, b'\x1F') #sets gyroscope output to 8khz/(1 + 31) = 250hz, accelerometer downsamples to match 250hz frequency
         self.i2c.writeto_mem(self.ADDRESS, 0x6B, b'\x08') #takes out of sleep mode, disables temperature sensor, and selects internal crystal oscillator
         self.i2c.writeto_mem(self.ADDRESS, 0x1C, b'\x18') #selects highest full-scale range for accelerometer(+-16g)
         self.i2c.writeto_mem(self.ADDRESS, 0x1B, b'\x18') #selects highest full-scale range for gyroscope(+-2000 degrees/sec)
